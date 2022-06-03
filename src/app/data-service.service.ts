@@ -10,7 +10,7 @@ export class DataServiceService {
   redirectUrl:any;
  
  // baseUrl:string = "http://localhost/Api";
-  baseUrl:string   ="https://pfe2022bis.000webhostapp.com/" ;  // l'adresse de la base de donnés qui heberge les donnees des utilisateurs  ici : lampp/lampp/htdocs/Api (le repertoire )
+  baseUrl:string   ="https://pfe2022bis.000webhostapp.com" ;  // l'adresse de la base de donnés qui heberge les donnees des utilisateurs  ici : lampp/lampp/htdocs/Api (le repertoire )
 
 @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   Usermodule: any;
