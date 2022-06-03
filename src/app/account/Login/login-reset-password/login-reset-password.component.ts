@@ -15,7 +15,7 @@ export class LoginResetPasswordComponent implements OnInit {
   password1: any
   password2: any
   pwd:any
-  m:any
+
   msg:any | undefined
   UserEmail: any | undefined;
 
@@ -53,17 +53,12 @@ export class LoginResetPasswordComponent implements OnInit {
   {     
       this.dataService.checkUserMail(angForm1.value.email) // verifier si le mail existe dans la base
       .subscribe(data=>{   
-        this.UserEmail=data[0]?.email
-        console.log(data)
-       if(this.UserEmail==undefined)  // si non message d'erreur
+        let t=data[0]?.email
+       
+       if(t==undefined)  // si non message d'erreur
         {
-          this.m="ce mail n'existe pas"
-         // console.log("ce mail n'existe pas")
-        //  this.router.navigate(['loginresetpassword'])
-
-          
-
-         
+          this.msg="ce mail n'existe pas"
+      
         }else  // si oui mettres a jours le mot de passe de l'user grace a son email
         {
          
@@ -73,7 +68,7 @@ export class LoginResetPasswordComponent implements OnInit {
                          this.router.navigate(['passwordresetsuccessfully']) 
               },
               error=>{
-              //  this.msg=" ce mail n'existe pas"
+               this.msg=" ce mail n'existe pas"
               //  this.router.navigate(['loginresetpassword'])
               }
           )
