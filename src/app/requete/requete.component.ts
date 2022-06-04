@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { FormGroup,FormControl, FormBuilder, Validators} from '@angular/forms';
 import { Chart } from 'chart.js';
 import { DataServiceService } from '../data-service.service';
@@ -93,7 +93,7 @@ export class RequeteComponent implements OnInit {
       }
 
    }})
-    .subscribe((data)=>{  
+    .subscribe((data: any)=>{  
      
       this.doc=data
     
@@ -143,7 +143,7 @@ export class RequeteComponent implements OnInit {
           },
          
     }})
-    .subscribe((data)=>{  
+    .subscribe((data: any)=>{  
       this.doc=data
     //recuperation des aggregation pour faire les visualisations
     this.aggs2=this.doc.aggregations.nb_par_date.buckets
@@ -444,7 +444,7 @@ fileDowload(){
     };
    
   
-   new AngularCsv(this.data3, "report",options);
+    new AngularCsv(this.data3, "Data-"+this.getDate1()+"-"+this.getCurrentTime(),options);
 
  
 }
@@ -458,6 +458,18 @@ getDownloadStatus()
     return false;
 
 }
+getDate1()
+{ let d =formatDate(new Date(), 'yyyy/MM/dd', 'en')
+  return d;
+}
+
+getCurrentTime() {
+  let today = new Date();
+  let hours = (today.getHours() < 10 ? '0' : '') + today.getHours();
+  let minutes = (today.getMinutes() < 10 ? '0' : '') + today.getMinutes();
+  let seconds = (today.getSeconds() < 10 ? '0' : '') + today.getSeconds();
+  return hours + ':' + minutes + ':' + seconds;
+ }
 
   
 }
