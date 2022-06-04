@@ -25,9 +25,12 @@
                     <input type="password" name="Password" formControlName="password"  autocomplete="on" class="form-control input-sm" placeholder="le mot de passe">
  
                 </div>
+                           
+                            <div   [hidden]="angForm.value.password==''"  *ngIf="angForm.value.password.length<8" > <p class="text-danger">le mot de passe dois contenir au minimum 8 caractères</p></div>
+                           
             
                 <p></p>
-                <button type="submit"  class="btn btn-primary" [disabled]="!angForm.valid">soumettre</button>
+                <button type="submit"  class="btn btn-primary" [disabled]="!angForm.valid  || angForm.value.password.toString().length <8">soumettre</button>
                 &nbsp; &nbsp;  <button style="color: green" class="btn btn-link" (click)="redirectToLogin()">J' ai déjà un compte</button>
             </form>
         </div>
