@@ -62,7 +62,7 @@ public updateuserlogin(email: any,pwd: any) {
     } 
    // service pour supprimer un utilisateur 
 removeUser(empid: number): Observable<Usermodule[]> {
-  return this.httpClient.delete<Usermodule[]>(this.baseUrl+'/deletedata.php?empid='+empid );
+  return this.httpClient.get<Usermodule[]>(this.baseUrl+'/deletedata.php?empid='+empid );
 }
    //service pour recuperer un user par son ID
 public getUserId(empid: number): Observable<Usermodule[]>
