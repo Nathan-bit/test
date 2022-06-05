@@ -51,12 +51,12 @@ export class LoginResetPasswordComponent implements OnInit {
 
   postdata(angForm1:NgForm)  //envoi du formualaire
   {     
-      this.dataService.checkUserMail(angForm1.value.email) // verifier si le mail existe dans la base
-      .subscribe(data=>{   
-        let t=data[0]?.email
+      // this.dataService.checkUserMail(angForm1.value.email) // verifier si le mail existe dans la base
+      // .subscribe(data=>{   
+      //   let t=data[0]?.email
        
-       if(t==this.angForm.value.email)  // si non message d'erreur
-        {
+      //  if(t==this.angForm.value.email)  // si non message d'erreur
+      //   {
           
           this.dataService.updateuserlogin(angForm1.value.email,angForm1.value.password).pipe(first())
           .subscribe(
@@ -64,18 +64,18 @@ export class LoginResetPasswordComponent implements OnInit {
                          this.router.navigate(['passwordresetsuccessfully']) 
               },
               error=>{
-               this.msg=" ce mail n'existe pas"
+               this.msg="ce mail n'existe pas"
               //  this.router.navigate(['loginresetpassword'])
               }
           )
           
       
-        }else  // si oui mettres a jours le mot de passe de l'user grace a son email
-        {
-          this.msg="ce mail n'existe pas"
-        }
+      //   }else  // si oui mettres a jours le mot de passe de l'user grace a son email
+      //   {
+      //     this.msg="ce mail n'existe pas"
+      //   }
           
-      })
+      // })
          
         
   }
