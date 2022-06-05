@@ -55,13 +55,9 @@ export class LoginResetPasswordComponent implements OnInit {
       .subscribe(data=>{   
         let t=data[0]?.email
        
-       if(t==undefined)  // si non message d'erreur
+       if(t==this.angForm.value.email)  // si non message d'erreur
         {
-          this.msg="ce mail n'existe pas"
-      
-        }else  // si oui mettres a jours le mot de passe de l'user grace a son email
-        {
-         
+          
           this.dataService.updateuserlogin(angForm1.value.email,angForm1.value.password).pipe(first())
           .subscribe(
               data => {
@@ -72,6 +68,11 @@ export class LoginResetPasswordComponent implements OnInit {
               //  this.router.navigate(['loginresetpassword'])
               }
           )
+          
+      
+        }else  // si oui mettres a jours le mot de passe de l'user grace a son email
+        {
+          this.msg="ce mail n'existe pas"
         }
           
       })
