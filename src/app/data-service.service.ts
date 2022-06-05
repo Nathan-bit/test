@@ -24,6 +24,13 @@ export class DataServiceService {
             return Usermodule;
         }));
 }
+// service pour mettre a jours le mot de passe modifier d'un utilisateur 
+public updateuserlogin(email: any,pwd: any) {
+  return this.httpClient.post<any>(this.baseUrl + '/ForgetPasswordUpdate.php', { email,pwd })
+    .pipe(map(Usermodule => {
+          return Usermodule;
+      }));
+    } 
   
                  // le service  userregistration qui envoi le formulaire registration a l''api registration.php
 
@@ -53,13 +60,7 @@ public AuthorizeUpdate(id: any,name: any,email: any,pwd: any,Authorization:any) 
    
 }     
 
-// service pour mettre a jours le mot de passe modifier d'un utilisateur 
-public updateuserlogin(email: any,pwd: any) {
-  return this.httpClient.post<any>(this.baseUrl + '/ForgetPasswordUpdate.php', { email,pwd })
-    .pipe(map(Usermodule => {
-          return Usermodule;
-      }));
-    } 
+
    // service pour supprimer un utilisateur 
 removeUser(empid: number): Observable<Usermodule[]> {
   return this.httpClient.get<Usermodule[]>(this.baseUrl+'/deletedata.php?empid='+empid );
