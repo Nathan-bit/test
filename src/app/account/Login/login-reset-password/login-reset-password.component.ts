@@ -35,19 +35,19 @@ export class LoginResetPasswordComponent implements OnInit {
     
   }
  
-   checkpwd()  // verifier la longeur du mot de passe
-   {
+  //  checkpwd()  // verifier la longeur du mot de passe
+  //  {
 
-     if(this.password1.toString().length<8 )
-     {
+  //    if(this.password1.toString().length<8 )
+  //    {
      
-        this.msg='Le mot de passe doit comporter au moins 8 caractères'
+  //       this.msg='Le mot de passe doit comporter au moins 8 caractères'
   
-       return false
+  //      return false
       
-     }
-     return true
-   }
+  //    }
+  //    return true
+  //  }
 
   postdata(angForm1:NgForm)  //envoi du formualaire
   {     
