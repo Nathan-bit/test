@@ -43,15 +43,15 @@ export class RegistrationComponent implements OnInit {
    
   postdata(angForm1:NgForm)  //envoi du formulaire a la base de donnees
   {     
-    var e = angForm1.value.email;
+    var e = angForm1.value.email.toString().toLowerCase();
    
-     this.dataService.checkUserMail(this.angForm.value.email).subscribe(res=>   // verifer si l'user est deja present dans la base donnees
+     this.dataService.checkUserMail(this.angForm.value.email.toString().toLowerCase()).subscribe(res=>   // verifer si l'user est deja present dans la base donnees
       {
             this.edata=res?.[0]?.email
     
              // console.log( this.edata)
          
-         if (this.angForm.value.email==this.edata)  //si oui message d'erreur
+         if (this.angForm.value.email.toString().toLowerCase()==this.edata)  //si oui message d'erreur
             {  
               this.msg="l'adresse email existe déjà" ;
          
@@ -60,7 +60,7 @@ export class RegistrationComponent implements OnInit {
             }
             else   // si non ajouter les donnees du formulaire a la base de donnees
             {
-            this.dataService.userregistration(angForm1.value.name.toString().toLowerCase(),angForm1.value.email,angForm1.value.password)
+            this.dataService.userregistration(angForm1.value.name.toString().toLowerCase(),angForm1.value.email.toString().toLowerCase(),angForm1.value.password)
             .pipe(first()).subscribe(
                 data => {
                     this.dataService.deleteMail();

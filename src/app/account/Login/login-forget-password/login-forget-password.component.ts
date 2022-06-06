@@ -31,13 +31,13 @@ export class LoginForgetPasswordComponent implements OnInit {
 
   postdata(angForm1:NgForm)   //envoi du formulaire
   {     
-    var e =this.angForm.value.email;
-            this.dataService.checkUserMail(angForm1.value.email)  //verifier si le mail existe dans la base de donnéés
+    var e =this.angForm.value.email.toString().toLowerCase();
+            this.dataService.checkUserMail(angForm1.value.email.toString().toLowerCase())  //verifier si le mail existe dans la base de donnéés
             .subscribe(data => {
               this.UserEmail=data[0]?.email;
-         if(angForm1.value.email==this.UserEmail)  //si oui on passe
+         if(angForm1.value.emailangForm1.value.email.toString().toLowerCase()==this.UserEmail)  //si oui on passe
          {
-          this.dataService.UserPasswordReset(angForm1.value.email)
+          this.dataService.UserPasswordReset(angForm1.value.email.toString().toLowerCase())
           .subscribe(data =>
             {         this.dataService.deleteMail();
                      this.dataService.setMail(e);

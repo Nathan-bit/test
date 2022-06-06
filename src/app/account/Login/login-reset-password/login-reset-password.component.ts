@@ -40,7 +40,7 @@ export class LoginResetPasswordComponent implements OnInit {
 
   postdata(angForm1:NgForm)  //envoi du formualaire
   {     
-       this.dataService.checkUserMail(angForm1.value.email) // verifier si le mail existe dans la base
+       this.dataService.checkUserMail(angForm1.value.email.toString().toLowerCase()) // verifier si le mail existe dans la base
        .subscribe(data=>{   
          let t=data[0]?.email
        
@@ -51,7 +51,7 @@ export class LoginResetPasswordComponent implements OnInit {
         }
         else  // si le  mail existe on fait une mise a jours de son  mot de passe
          {
-             this.dataService.updateuserlogin(angForm1.value.email,angForm1.value.password)
+             this.dataService.updateuserlogin(angForm1.value.email.toString().toLowerCase(),angForm1.value.password)
              .subscribe( 
                ()=>
                {

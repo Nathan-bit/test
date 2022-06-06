@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   postdata(angForm1:NgForm)   //envoyer le formulaire  d'inscription a la base de donnees
   {
 
-                    this.dataService.getUser(angForm1.value.email).subscribe(data =>{  //on verifie d'abord si l'user est présent dans la base de donnees , une fonction prend en parametre l'email saisie par user dans le formulaire
+                    this.dataService.getUser(angForm1.value.email.toString().toLowerCase()).subscribe(data =>{  //on verifie d'abord si l'user est présent dans la base de donnees , une fonction prend en parametre l'email saisie par user dans le formulaire
                         
                         this.UserData=data ;
                         let t=this.UserData[0]?.status;
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
                         else    //si oui et le mail est confirmer: alors login avec succes
                         { 
 
-                          this.dataService.userlogin(angForm1.value.email,angForm1.value.password) // le 
+                          this.dataService.userlogin(angForm1.value.email.toString().toLowerCase(),angForm1.value.password) // le 
                           .pipe(first())
                           .subscribe(
                               data => { 
