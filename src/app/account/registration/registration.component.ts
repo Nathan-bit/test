@@ -35,7 +35,9 @@ export class RegistrationComponent implements OnInit {
   }         
   redirectToLogin()
   {
-    this.router.navigate(['login'])
+    this.router.navigate(['login']).then(() => {
+      window.location.reload();
+    });
   }
   
  
@@ -55,7 +57,9 @@ export class RegistrationComponent implements OnInit {
             {  
               this.msg="l'adresse email existe déjà" ;
          
-              this.router.navigate(['registration']);
+              this.router.navigate(['registration']).then(() => {
+                window.location.reload();
+              });
        
             }
             else   // si non ajouter les donnees du formulaire a la base de donnees
@@ -65,7 +69,9 @@ export class RegistrationComponent implements OnInit {
                 data => {
                     this.dataService.deleteMail();
                     this.dataService.setMail(e);
-                    this.router.navigate(['/registrationsuccessfully']);
+                    this.router.navigate(['/registrationsuccessfully']).then(() => {
+                      window.location.reload();
+                    });
                 },
                 error => {
                   

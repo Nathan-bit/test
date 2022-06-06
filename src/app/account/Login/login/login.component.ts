@@ -34,11 +34,15 @@ export class LoginComponent implements OnInit {
   }
   redirectToRegister()       //redirection vers la page : inscriptioon
   {
-    this.router.navigate(['registration']);
+    this.router.navigate(['registration']).then(() => {
+      window.location.reload();
+    });
   }
   
   forgetPassword(){       // redirection vers la page :  mot de passe oublié
-    this.router.navigate(['loginforgetpassword'])
+    this.router.navigate(['loginforgetpassword']).then(() => {
+      window.location.reload();
+    });
     
   }
   postdata(angForm1:NgForm)   //envoyer le formulaire  d'inscription a la base de donnees
@@ -53,12 +57,17 @@ export class LoginComponent implements OnInit {
 
                        {  
                              this.msg="ce mail n'existe";
+                             this.router.navigate(['/login']).then(() => {
+                              window.location.reload();
+                            });
                        } 
                            
                         else if(t=="inactif")  // si oui et quil n'as pas encore confirmer son mail : on le redirige vers le login avec le message : votre email n'a pas été confirmer apres inscription
                        {
                         this.msg="   L'e-mail n'a pas été confirmé, veuillez vérifier votre boite mail et confirmer l'e-mail avant de continuer"
-                        this.router.navigate(['login']);
+                        this.router.navigate(['login']).then(() => {
+                          window.location.reload();
+                        });
                        }  
                         else    //si oui et le mail est confirmer: alors login avec succes
                         { 
@@ -79,11 +88,15 @@ export class LoginComponent implements OnInit {
                                       this.dataService.deleteTel()
                                       this.dataService.setAuth('1');
                                       this.dataService.setTel(this.t);
-                                      this.router.navigate(['home']);
+                                      this.router.navigate(['home']).then(() => {
+                                        window.location.reload();
+                                      });
                                     }
                                   else {          // si non le message : attentez l'authorisation de l'admin avant d'acceder aux donnees
                                       this.dataService.setAuth('0');
-                                      this.router.navigate(['NotAuthorizedMessage'])
+                                      this.router.navigate(['NotAuthorizedMessage']).then(() => {
+                                        window.location.reload();
+                                      });
                                     }
                            
                          },

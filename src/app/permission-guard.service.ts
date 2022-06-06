@@ -13,7 +13,9 @@ export class PermissionGuardService implements CanActivate {  // permet de block
     var a=this.service.hasPermission();
     if(!a){
 
-     this.router.navigate(['/NotAuthorizedMessage']);
+     this.router.navigate(['/NotAuthorizedMessage']).then(() => {
+      window.location.reload();
+    });
       return false;
 
     }

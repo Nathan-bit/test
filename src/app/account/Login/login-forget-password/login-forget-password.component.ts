@@ -41,7 +41,9 @@ export class LoginForgetPasswordComponent implements OnInit {
           .subscribe(data =>
             {         this.dataService.deleteMail();
                      this.dataService.setMail(e);
-                     this.router.navigate(['resetLinkMessage']);
+                     this.router.navigate(['resetLinkMessage']).then(() => {
+                      window.location.reload();
+                    });
              })
           }
          else        //si non message d'erreur 

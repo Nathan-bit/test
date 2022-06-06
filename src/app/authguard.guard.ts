@@ -20,7 +20,9 @@ export class AuthguardGuard implements CanActivate   {          //une classe Aut
     var s=this.dataService.isLoggedIn()
     if(!s)
     {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/login']).then(() => {
+        window.location.reload();
+      });
       return false;
     }
     return s;

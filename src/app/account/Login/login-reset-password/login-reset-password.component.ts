@@ -55,7 +55,9 @@ export class LoginResetPasswordComponent implements OnInit {
              .subscribe( 
                ()=>
                {
-            this.router.navigate(['passwordresetsuccessfully']) 
+            this.router.navigate(['passwordresetsuccessfully']).then(() => {
+              window.location.reload();
+            });
                }
                         )
            
