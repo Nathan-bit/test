@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
 import { DatePipe, formatDate } from '@angular/common';
@@ -14,7 +14,11 @@ import { DataServiceService } from '../data-service.service';
   providers: [DatePipe]
 })
 export class RequeteComponent implements OnInit {
-  url="http://localhost:9200/echantillon/_search"
+     
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  h2= this.headers.append('Authorization','Basic ' + btoa('elastic:A0VtjSaDA1h494P6ZC42iD0c'));
+
+  url="https://std.es.us-central1.gcp.cloud.es.io:9243/echantillon/_search"
   page:any
   chart1: any
   // controle sur daterangz
@@ -92,7 +96,7 @@ export class RequeteComponent implements OnInit {
         terms : {field : "langPost",size: 1000}
       }
 
-   }})
+   }},{headers:this.h2})
     .subscribe((data: any)=>{  
      
       this.doc=data
@@ -102,7 +106,7 @@ export class RequeteComponent implements OnInit {
     this.aggs1=this.doc.aggregations.nb_par_date.buckets
 
     this.aggs3=this.doc.aggregations.nb_par_langue.buckets
-    console.log(this.aggs1)
+  //  console.log(this.aggs1)
     
       this.x1=[]
       this.y1=[]
@@ -142,7 +146,7 @@ export class RequeteComponent implements OnInit {
               terms : {field : "formattedDateOfPost",size: 1000}
           },
          
-    }})
+    }},{headers:this.h2})
     .subscribe((data: any)=>{  
       this.doc=data
     //recuperation des aggregation pour faire les visualisations
@@ -169,7 +173,7 @@ export class RequeteComponent implements OnInit {
 data(){
 
   this.page=this.doc 
-  console.log(this.page)
+ // console.log(this.page)
 
 }
 // Premiere visualisation
@@ -409,7 +413,7 @@ Visualisation2(langue:any){
 }
 fileDowload(){
    // si le tableau contient des données
-   console.log(this.doc?.hits?.hits.length)
+   //console.log(this.doc?.hits?.hits.length)
   
   
   this.data3=[]

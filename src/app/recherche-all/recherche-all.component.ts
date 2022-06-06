@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs';
 import { Chart } from 'chart.js';
@@ -18,7 +18,13 @@ export class RechercheAllComponent implements OnInit {
   x2: Array<string> = [];
   y2: Array<number> = [];
   //adresse du server elasticsearch
-  url="http://localhost:9200/echantillon/_search"
+
+   headers = new HttpHeaders().set('Content-Type', 'application/json');
+   h2= this.headers.append('Authorization','Basic ' + btoa('elastic:A0VtjSaDA1h494P6ZC42iD0c'));
+
+  
+
+  url="https://std.es.us-central1.gcp.cloud.es.io:9243/echantillon/_search"
   
     constructor(private http:HttpClient) { 
      
@@ -32,7 +38,7 @@ export class RechercheAllComponent implements OnInit {
       })
   
      /*la requette à l'api rest elasticsearch qui envoie 10 enregistrements par defaut et aussi les aggregations par langue et par date*/
-     this.http.post(this.url,
+     this.http.post<any[]>(this.url,
       {aggs: {
         nb_par_lang : {
             terms : {field : "langPost",size: 1000}
@@ -40,7 +46,7 @@ export class RechercheAllComponent implements OnInit {
     nb_par_annee : {
       terms : {field : "formattedDateOfPost" , size: 1000}
 }
-  }})
+  }},{ headers: this.h2 })
   /*recuperation des données sous forme de fichier json*/
     .pipe(map(response => response))
     .subscribe((data)=>{

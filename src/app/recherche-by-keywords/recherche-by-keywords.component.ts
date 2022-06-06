@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core'
 import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
 import { FormGroup,FormBuilder, Validators} from '@angular/forms';
@@ -22,7 +22,11 @@ export class RechercheByKeywordsComponent implements OnInit {
   x1: Array<string> = [];
   y1: Array<number> = [];
   // addresse du serveur elasticsearch
-  url="http://localhost:9200/echantillon/_search"
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  h2= this.headers.append('Authorization','Basic ' + btoa('elastic:A0VtjSaDA1h494P6ZC42iD0c'));
+
+
+  url="https://std.es.us-central1.gcp.cloud.es.io:9243/echantillon/_search"
   
   constructor(private http:HttpClient, private dataservice: DataServiceService, private formbuilder:FormBuilder) { 
     
@@ -57,7 +61,7 @@ export class RechercheByKeywordsComponent implements OnInit {
           nb_par_date : {
               terms: {field : "formattedDateOfPost",size: 1000}
       }}
-         })
+         },{headers :this.h2})
   //recuperation des données sous forme de fichier json
   .subscribe((data: any)=>{  
     this.doc=data  

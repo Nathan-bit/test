@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs';
 import { DataServiceService } from '../data-service.service';
 
 @Component({
@@ -8,10 +10,12 @@ import { DataServiceService } from '../data-service.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private service : DataServiceService) { }
+  constructor(private service : DataServiceService,private http : HttpClient) { }
+  
 
   ngOnInit(): void {
   }
   
 
+  
 }
