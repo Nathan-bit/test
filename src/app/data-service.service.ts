@@ -198,7 +198,7 @@ isLoggedIn() {
 isAdmin()
 {
   var localEmail=this.getToken();
-  if(localEmail=='projetdefindetude024@gmail.com')  // ici le mail peut etre changer  au mail de l'admin
+  if(localEmail=='projetdefindetude024@gmail.com' || localEmail=='gabiamsamuelnathan@gmail.com')  // ici le mail peut etre changer  au mail de l'admin
   {
     return true;
   }
