@@ -57,9 +57,7 @@ export class RegistrationComponent implements OnInit {
             {  
               this.msg="l'adresse email existe déjà" ;
          
-              this.router.navigate(['registration']).then(() => {
-                window.location.reload();
-              });
+              this.router.navigate(['registration'])
        
             }
             else   // si non ajouter les donnees du formulaire a la base de donnees

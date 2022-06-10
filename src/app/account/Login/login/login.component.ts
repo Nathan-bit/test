@@ -57,17 +57,14 @@ export class LoginComponent implements OnInit {
 
                        {  
                              this.msg="ce mail n'existe";
-                             this.router.navigate(['/login']).then(() => {
-                              window.location.reload();
-                            });
+                             this.router.navigate(['/login'])
                        } 
                            
                         else if(t=="inactif")  // si oui et quil n'as pas encore confirmer son mail : on le redirige vers le login avec le message : votre email n'a pas été confirmer apres inscription
                        {
                         this.msg="   L'e-mail n'a pas été confirmé, veuillez vérifier votre boite mail et confirmer l'e-mail avant de continuer"
-                        this.router.navigate(['login']).then(() => {
-                          window.location.reload();
-                        });
+                        this.router.navigate(['login'])
+                       
                        }  
                         else    //si oui et le mail est confirmer: alors login avec succes
                         { 
