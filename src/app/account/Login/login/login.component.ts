@@ -1,4 +1,3 @@
-import { error } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -30,6 +29,7 @@ export class LoginComponent implements OnInit {
    }
  
   ngOnInit() {
+    
     
   }
   redirectToRegister()       //redirection vers la page : inscriptioon

@@ -1,6 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs';
 import { DataServiceService } from '../data-service.service';
 
 @Component({
@@ -9,12 +8,15 @@ import { DataServiceService } from '../data-service.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  auth: any;
+  tel: any;
 
-  constructor(private service : DataServiceService,private http : HttpClient) { }
+  constructor(private dataService : DataServiceService,private http : HttpClient) { }
   
 
   ngOnInit(): void {
     
+
   }
   
 

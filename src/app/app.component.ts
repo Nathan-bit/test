@@ -1,4 +1,3 @@
-import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { DataServiceService } from './data-service.service';
@@ -11,10 +10,12 @@ import { DataServiceService } from './data-service.service';
 export class AppComponent {
   title = 'application';
 
+  tel  :any;
+  auth :any = ''
 
-  ngOnInit(): void {
+
+  ngOnInit():void {
    
-       
   }
 
 
@@ -49,7 +50,7 @@ logout()    //apres deconnection supprimer toutes les donnees stockés dans loca
   this.dataService.clearAll();
   window.location.href = window.location.href;
 }
-
+         
 }
  
  

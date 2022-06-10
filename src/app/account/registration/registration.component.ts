@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { filter, first, map } from 'rxjs';
+import { first } from 'rxjs';
 import { DataServiceService } from 'src/app/data-service.service';
 
 @Component({

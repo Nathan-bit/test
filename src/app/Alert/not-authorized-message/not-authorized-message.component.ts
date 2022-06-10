@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataServiceService } from 'src/app/data-service.service';
 
 @Component({
   selector: 'app-not-authorized-message',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotAuthorizedMessageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service : DataServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
+      
   }
 
 }
