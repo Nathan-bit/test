@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { map } from 'rxjs';
 import { DataServiceService } from './data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +12,12 @@ import { DataServiceService } from './data-service.service';
 export class AppComponent {
   title = 'application';
 
-  tel  :any;
-  auth :any = ''
-
-
-  ngOnInit():void {
-   
-  }
-
-
+ 
   loginbtn:boolean;
   logoutbtn:boolean;
-  constructor(private dataService: DataServiceService, private httpClient : HttpClient) {
+
+
+  constructor(private dataService: DataServiceService,private router : Router, private httpClient : HttpClient) {
     dataService.getLoggedInName.subscribe(name => this.changeName(name));
     if(this.dataService.isLoggedIn())
     {
@@ -36,6 +32,45 @@ export class AppComponent {
  
  
 }
+
+  ngOnInit():void {
+  
+         this.dataService.getUser(this.dataService.getToken())
+         .pipe(map(res=>res))
+         .subscribe(data=> {
+          let auth=data[0].Authorization;
+          let tel=data[0].Telechargement;
+          if(this.dataService.getAuth()!=auth )
+              {
+                this.dataService.deleteAuth();
+                this.dataService.setAuth(auth);  
+                   if(auth == '1')
+                   {
+                    this.router.navigate(['/home']).then(()=>{
+                      window.location.reload()
+                    })
+                   }else{
+                    this.router.navigate(['/NotAuthorizedMessage']).then(()=>{
+                      window.location.reload();
+                    })
+                   }
+              
+              }  
+          if(this.dataService.getTel()!=tel)  
+          {
+             this.dataService.deleteTel();
+             this.dataService.setTel(tel)
+            
+
+          }
+         })
+
+
+  }
+
+
+
+ 
 private changeName(name: boolean): void {
   this.logoutbtn = name;
   this.loginbtn = !name;

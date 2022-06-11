@@ -19,6 +19,7 @@ export class PermissionGuardService implements CanActivate {  // permet de block
       return false;
 
     }
+   
     return a;
    
   }
